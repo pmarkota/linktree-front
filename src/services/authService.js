@@ -21,7 +21,7 @@ export const authService = {
   requestOTP: async (phoneNumber) => {
     try {
       const response = await axios.post(`${API_URL}/api/auth/request-otp`, {
-        phoneNumber,
+        phone_number: phoneNumber,
       });
       return response.data;
     } catch (error) {
@@ -32,7 +32,7 @@ export const authService = {
   verifyOTP: async (phoneNumber, otpCode) => {
     try {
       const response = await axios.post(`${API_URL}/api/auth/verify-otp`, {
-        phoneNumber,
+        phone_number: phoneNumber,
         otpCode,
       });
       return response.data;
