@@ -8,7 +8,7 @@ const OTPInput = ({ phoneNumber }) => {
   const [loading, setLoading] = useState(false);
   const { verifyOTP } = useAuth();
   const navigate = useNavigate();
-
+  // COMMENT
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
