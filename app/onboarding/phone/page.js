@@ -121,26 +121,20 @@ export default function PhoneNumberPage() {
         setSuccess("OTP verified successfully!");
         login(response.token);
         sessionStorage.removeItem("otpMode");
+        sessionStorage.removeItem("phoneNumber");
+
+        // Store token in localStorage
+        localStorage.setItem("token", response.token);
+
+        // Small delay to ensure token is stored
         setTimeout(() => {
           router.push("/onboarding/business-type");
         }, 100);
       } else {
-        // For testing purposes, always succeed
-        setSuccess("OTP verified successfully!");
-        login("test-token-" + Date.now()); // Generate a test token
-        sessionStorage.removeItem("otpMode");
-        setTimeout(() => {
-          router.push("/onboarding/business-type");
-        }, 100);
+        setError(response.message || "Failed to verify OTP");
       }
     } catch (error) {
-      // For testing purposes, always succeed
-      setSuccess("OTP verified successfully!");
-      login("test-token-" + Date.now()); // Generate a test token
-      sessionStorage.removeItem("otpMode");
-      setTimeout(() => {
-        router.push("/onboarding/business-type");
-      }, 100);
+      setError(error.message || "Failed to verify OTP");
     }
   };
 
